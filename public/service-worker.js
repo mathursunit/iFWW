@@ -3,7 +3,7 @@ const CACHE_NAME = "sunsar-wordle-cache-v1";
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(["/", "/index.html"]);
+      return cache.addAll(["./", "./index.html"]);
     })
   );
 });
@@ -33,7 +33,7 @@ self.addEventListener("fetch", (event) => {
           cache.match(request).then((cached) => {
             if (cached) return cached;
             if (request.mode === "navigate") {
-              return cache.match("/index.html");
+              return cache.match("./index.html");
             }
           })
         )
