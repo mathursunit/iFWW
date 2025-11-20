@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SunSar - Fun with Words</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Fonts -->
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              background: "#1A202C",
+              panel: "#2D3748",
+              text: "#E2E8F0",
+              correct: "#8B5CF6",
+              present: "#2DD4BF",
+              absent: "#4A5568",
+              keybg: "#4A5568",
+            },
+            keyframes: {
+              "tile-flip": {
+                "0%": { transform: "rotateX(0deg)" },
+                "50%": { transform: "rotateX(90deg)" },
+                "100%": { transform: "rotateX(0deg)" },
+              },
+              "toast-slide": {
+                "0%": { transform: "translateY(-100%)", opacity: "0" },
+                "100%": { transform: "translateY(0)", opacity: "1" },
+              },
+            },
+            animation: {
+              "tile-flip": "tile-flip 500ms ease-in-out",
+              "toast-slide": "toast-slide 250ms ease-out",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        --color-background: #1a202c;
+        --color-panel-bg: #2d3748;
+        --color-text: #e2e8f0;
+        --color-correct: #8b5cf6;
+        --color-present: #2dd4bf;
+        --color-absent: #4a5568;
+        --key-bg: #4a5568;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background-color: var(--color-background);
+        color: var(--color-text);
+      }
+    </style>
+
+    <!-- canvas-confetti from CDN -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"
+      defer
+    ></script>
+  </head>
+  <body class="bg-background text-text">
+    <div id="root"></div>
+
+    <script type="module" src="/src/main.tsx"></script>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .catch((err) => console.error("SW registration failed:", err));
+        });
+      }
+    </script>
+  </body>
+</html>
