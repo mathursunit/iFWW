@@ -58,6 +58,5 @@ struct ContentView: View {
         // Keyboard input is handled through the virtual keyboard
         // Physical keyboard support can be added here if needed
     }
-    }
 }
 
